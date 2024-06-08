@@ -5,3 +5,5 @@
 '''
 def main(a, b):
   return a + b
+
+print(main(*map(int, input().split())))
