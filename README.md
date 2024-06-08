@@ -84,7 +84,9 @@ const main = (a, b) => {
   구체적인 문제해설을 작성합니다.
 
 [예시]
+
 `PR이름: [백준] 1000`
+
 ```markdown
 ### 개요
 - close #2
@@ -97,6 +99,11 @@ const main = (a, b) => {
 ### 문제 해설
 A + B 를 계산합니다.
 ```
+
+| 이미지 |
+| --- |
+| ![image](https://github.com/py-algorithm/algorithm/assets/43674669/1aac0c5d-2781-437f-b65e-3e2e3d98c5ec) |
+
 
 ### Merge
 
