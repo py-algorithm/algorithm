@@ -12,13 +12,14 @@ input=sys.stdin.readline
 d=deque([])
 
 for i in range(n):
-  commend=input().split()
+  commends=input().split()
+  commend=commends[0]
 
   if commend=='push_front':
-    d.appendleft()
+    d.appendleft(commends[1])
 
   if commend=='push_back':
-    d.append()
+    d.append(commends[1])
 
   if commend=='pop_front':
     if d:
@@ -49,6 +50,6 @@ for i in range(n):
 
   if commend=='back':
     if d:
-      print(d[n-1])
+      print(d[-1])
     else:
       print(-1)
