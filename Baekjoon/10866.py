@@ -12,13 +12,14 @@ input=sys.stdin.readline
 d=deque([])
 
 for i in range(n):
-  commend=input().split()
+  commends=input().split()
+  commend=commends[0] #commend가 split에의해 배열로 받으니 원하는 커멘드를 얻기 위해 [0]에 접근해야함
 
   if commend=='push_front':
-    d.appendleft()
+    d.appendleft(commends[1])
 
   if commend=='push_back':
-    d.append()
+    d.append(commends[1])
 
   if commend=='pop_front':
     if d:
@@ -49,6 +50,6 @@ for i in range(n):
 
   if commend=='back':
     if d:
-      print(d[n-1])
+      print(d[-1])
     else:
       print(-1)
