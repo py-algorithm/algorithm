@@ -11,28 +11,28 @@ input=sys.stdin.readline
 
 d=deque([])
 
-for i in range(n):
-  commends=input().split()
+for _ in range(n):
+  commends=list(map(int,input().split()))
   commend=commends[0]
 
   if commend=='1 x':
-    print(d.appendleft(x))
+    d.appendleft(commends[1])
   
   if commend=='2 x':
-    print(d.append(x))
+    d.append(commends[1])
 
   if commend=='3':
     if d:
-
-      print(d[0])
+      d.popleft()
+      print(d)
     else:
       print(-1)
 
   if commend=='4':
-    if d:
-      print(d[-1])
-    else:
+    if len(d)==0:
       print(-1)
+    else:
+      print(d.pop())
   
   if commend=='5':
     print(len(d))
