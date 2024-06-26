@@ -15,41 +15,40 @@ for _ in range(n):
   commends=list(map(int,input().split()))
   commend=commends[0]
 
-  if commend=='1 x':
+  if commend==1:
     d.appendleft(commends[1])
   
-  if commend=='2 x':
+  if commend==2:
     d.append(commends[1])
 
-  if commend=='3':
+  if commend==3:
     if d:
-      d.popleft()
-      print(d)
+      print(d.popleft())
     else:
       print(-1)
 
-  if commend=='4':
+  if commend==4:
     if len(d)==0:
       print(-1)
     else:
       print(d.pop())
   
-  if commend=='5':
+  if commend==5:
     print(len(d))
 
-  if commend=='6':
+  if commend==6:
     if d:
       print(0)
     else:
       print(1)
 
-  if commend=='7':
+  if commend==7:
     if d:
       print(d[0])
     else:
       print(-1)
 
-  if commend=='8':
+  if commend==8:
     if d:
       print(d[-1])
     else:
