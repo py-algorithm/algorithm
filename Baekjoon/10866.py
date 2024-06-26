@@ -13,7 +13,7 @@ d=deque([])
 
 for i in range(n):
   commends=input().split()
-  commend=commends[0]
+  commend=commends[0] #commend가 split에의해 배열로 받으니 원하는 커멘드를 얻기 위해 [0]에 접근해야함
 
   if commend=='push_front':
     d.appendleft(commends[1])
