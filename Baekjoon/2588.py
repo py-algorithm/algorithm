@@ -1,5 +1,5 @@
 '''
-문제 링크: https://www.acmicpc.net/problem/2753
+문제 링크: https://www.acmicpc.net/problem/2588
 카테고리: 수학
 문제 해설: (세 자리 수) × (세 자리 수)
 '''
