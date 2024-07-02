@@ -6,12 +6,11 @@
 a=int(input())
 b=int(input())
 
-arr=[a*(b%10),
-     a*(b%100-b%10),
-     a*(b-b%100),
-     a*(b%10)+a*(b%100-b%10)+a*(b-b%100)]
+i=a*(b%10)
+j=a*(b%100-b%10)//10
+k=a*(b-b%100)//100
 
-print(arr[0])
-print(arr[1]//10)
-print(arr[2]//100)
-print(arr[3])
+print(i)
+print(j)
+print(k)
+print(i+j*10+k*100)
