@@ -9,4 +9,4 @@ while True:
   if a==0 and b==0: #예제 입력에 0 0 입력시 출력에 안보임
     break
   else:
-    print(a+b, sep='\n')
+    print(a+b)
