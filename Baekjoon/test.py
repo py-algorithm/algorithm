@@ -1,21 +1,25 @@
-#1.소수판별_x의제곱근까지만 보면된다
-import math
+#음료수얼려먹기=연결요소찾기
+n,m=map(int,input().split())
+graph=[]
+for i in range(n):
+  graph.append([map(int,input())])
 
-'''def prime_num(x):
-  for i in range (2,int(math.sqrt(x)+1)):
-    if x%i==0:
-      return False
+def dfs(x,y):
+  if x<=-1 or x>n or y<=-1 or y>m:
+    return False
+  if graph[x][y]==0:
+    dfs(x-1,y)
+    dfs(x+1,y)
+    dfs(x,y+1)
+    dfs(x,y-1)
     return True
-print(prime_num(4))
-print(prime_num(7))'''
+  else:
+    return False
 
-#에라토스테네스의체
-n=int(input())
-arr=[True for i in range(n)]
+result=0
+for i in range(n):
+  for j in range(m):
+    if dfs(i,j)==True:
+      result+=1
 
-for i in range(2,int(math.sqrt(n)+1)):
-  if arr[i]==True:
-    for j in range(2,n):
-      arr[i*j]==False
-
-print(i)
+print(result)
