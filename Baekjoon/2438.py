@@ -1,5 +1,5 @@
 '''
-문제 링크: https://www.acmicpc.net/problem/12438
+문제 링크: https://www.acmicpc.net/problem/2438
 카테고리: 구현
 문제 해설: 별찍기
 '''
