@@ -3,6 +3,10 @@
 카테고리:수학, 구현, 사칙연산
 문제해설:주어진 조건대로 연산된 검증수 출력하기
 '''
-a,b,c,d,e=map(int,input().split())
-i=(a*a+b*b+c*c+d*d+e*e)%10
-print(i)
+a=map(int,input().split())
+result=0
+
+for i in a:
+  result+=i**2
+
+print(result%10)
