@@ -16,10 +16,7 @@ def find(node: int) -> int:
   return disjoint_set[node]
 
 def union(a: int, b: int) -> None:
-  set_a = find(a)
-  set_b = find(b)
-  disjoint_set[set_b] = set_a
-
+  disjoint_set[find(b)] = find(a)
 
 for _ in range(m):
   commend, a, b = map(int, input().split())
