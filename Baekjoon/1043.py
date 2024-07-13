@@ -37,17 +37,17 @@ known_members_sorted = sorted(list(known_members))
 result = 0
 
 for party in parties:
+  is_valid = True
   for member in party:
-    is_valid = True
     for known_member in known_members_sorted:
       if member == known_member:
         is_valid = False
         break
       if member < known_member:
         break
-
-    if is_valid:
-      result += 1
+    if not is_valid:
       break
+  if is_valid:
+    result += 1
 
 print(result)
