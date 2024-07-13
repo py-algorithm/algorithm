@@ -8,28 +8,27 @@
 
 n, m = map(int, input().split())
 
-graph: dict[int, set[int]] = dict()
+disjoint_set = list(range(n+1))
+
+def find(node: int) -> int:
+  if disjoint_set[node] != node:
+    disjoint_set[node] = find(disjoint_set[node])
+  return disjoint_set[node]
+
+def union(a: int, b: int) -> None:
+  set_a = find(a)
+  set_b = find(b)
+  disjoint_set[set_b] = set_a
+
 
 for _ in range(m):
   commend, a, b = map(int, input().split())
 
   if commend == 0:
-    if not graph.get(a):
-      graph[a] = set([a])
-    if not graph.get(b):
-      graph[b] = set([b])
-
-    graph[a].update(graph.get(b))
-    graph[b].update(graph.get(a))
-  
+    union(a, b)
+    
   elif commend == 1:
-    print(graph)
-
-    is_joint = False
-    for item in graph[a]:
-      if b == item:
-        is_joint = True
-        break
+    is_joint = find(a) == find(b)
     
     if is_joint:
       print('yes')
