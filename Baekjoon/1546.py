@@ -5,10 +5,11 @@
 '''
 a=int(input())
 b=list(map(int,input().split()))
+max_b=max(b)
 
 result=0
 
 for i in b:
-  result+=i/max(b)*100
+  result+=i/max_b*100
 
 print(result/len(b))
