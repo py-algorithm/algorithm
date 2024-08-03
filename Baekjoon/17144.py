@@ -17,7 +17,39 @@
 - 공기청정기에서 부는 바람은 미세먼지가 없는 바람이고, 공기청정기로 들어간 미세먼지는 모두 정화된다.
 '''
 
-r, c, t = map(int, input().split())
-metrix = list(list(map(int, input().split())) for _ in range(r))
+class Room:
+  def __init__(self, metrix: list[list[int]]):
+    self.room = metrix
 
-print(*metrix, sep='\n')
+  def spread(self):
+    pass
+
+  def getTotalDust() -> int:
+    pass
+
+class Cleaner:
+
+  def __init__(self, r: int, c: int):
+    self.r = r
+    self.c = c
+
+  def work(self, room: Room):
+
+    return
+  
+
+  
+def main():
+  r, c, t = map(int, input().split())
+  metrix = list(list(map(int, input().split())) for _ in range(r))
+
+  room = Room(metrix)
+  cleaner = Cleaner(r, c)
+
+  for _ in range(t):
+    room.spread()
+    cleaner.work(room)
+
+  print(room.getTotalDust())
+
+main()
