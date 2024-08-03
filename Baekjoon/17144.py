@@ -17,21 +17,70 @@
 - 공기청정기에서 부는 바람은 미세먼지가 없는 바람이고, 공기청정기로 들어간 미세먼지는 모두 정화된다.
 '''
 
+import math
+
 class Room:
-  def __init__(self, metrix: list[list[int]]):
+
+  dr = [0, 0, 1, -1]
+  dc = [1, -1, 0 ,0]
+
+  def __init__(self, metrix: list[list[int]]) -> None:
+    self.r = len(metrix)
+    self.c = len(metrix[0])
     self.room = metrix
 
-  def spread(self):
-    pass
+    cleaner_position_top = 0
 
-  def getTotalDust() -> int:
-    pass
+    for row in range(self.r):
+      if metrix[row][0] == -1:
+        cleaner_position_top = row
+        break
+
+    self.cleaner = Cleaner(cleaner_position_top)
+
+  def spread(self) -> None:
+    diff_room = [[0 for _ in range(self.c)] for _ in range(self.r)]
+
+    for row in range(self.r):
+      for col in range(self.c):
+        
+        if self.room[row][col] < 1:
+          continue
+
+        spread_amount = math.floor(self.room[row][col] / 5)
+
+        spread_count = 0
+        for r, c in zip(self.dr, self.dc):
+          nr = row + r
+          nc = col + c
+
+          if self.is_bound(nr, nc):
+            spread_count += 1
+            diff_room[nr][nc] += spread_amount
+
+        diff_room[row][col] -= spread_count * spread_amount
+    
+    new_room = []
+
+    for old_row, diff_row in (zip(self.room, diff_room)):  
+      new_room.append([x + y for x, y in zip(old_row, diff_row)])
+
+    self.room = new_room
+
+  def is_bound(self, r: int, c: int) -> bool:
+    if c == 0 and (self.cleaner.top != r or self.cleaner.bottom != r):
+      return False
+    
+    return self.r > r and r >= 0 and self.c > c and c >=0
+
+  def getTotalDust(self) -> int:
+    return sum(sum(self.room, [])) + 2
 
 class Cleaner:
 
-  def __init__(self, r: int, c: int):
-    self.r = r
-    self.c = c
+  def __init__(self, position_top: int):
+    self.top = position_top
+    self.bottom = position_top + 1
 
   def work(self, room: Room):
 
@@ -44,11 +93,11 @@ def main():
   metrix = list(list(map(int, input().split())) for _ in range(r))
 
   room = Room(metrix)
-  cleaner = Cleaner(r, c)
 
   for _ in range(t):
     room.spread()
-    cleaner.work(room)
+    print(*room.room, sep="\n")
+    room.cleaner.work(room)
 
   print(room.getTotalDust())
 
