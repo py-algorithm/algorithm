@@ -10,14 +10,16 @@ n=int(input())
 #찾은m을 재귀적으로 n에 넣기
 
 #m을 1부터n까지 완전탐색으로 찾기
-for m in range(1,n+1):
-  a=sum(map(int,str(m)))
-  m_sum=m+a 
-  '''m_sum말고 sum을 했더니 
-  'int' object is not callable오류발생'''
-  if m_sum==n:
-    print(m)
-    break #break없으면 모든 생성자 출력함
-  else:
-    print(0)
+def answer(n):
+  for m in range(1,n+1):
+    a=sum(map(int,str(m)))
+    m_sum=m+a 
+    '''m_sum말고 sum을 했더니 
+    'int' object is not callable오류발생'''
+    if m_sum==n:
+      return m
+  
+  return 0
+
+print(answer(n))
   
