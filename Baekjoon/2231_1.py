@@ -11,6 +11,7 @@ M의 각자리수 + M
 
 216입력->198출력
 '''
+
 N=int(input())
 
 def M_sum(M):
@@ -26,8 +27,6 @@ def M_sum(M):
       break
 
   return sum(arr)
-
-
 def result_M(N):
   
   for M in range(N+1):
