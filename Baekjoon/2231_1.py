@@ -22,14 +22,19 @@ def M_sum(M):
     M=(M-a)//10
   
     if M<10:
+      arr.append(M)
       break
 
   return sum(arr)
 
-for M in range(N+1):
-  M_sum_all=M+M_sum(M)
-  if M_sum_all==N:
-    print(M)
-    break
-  else:
-    print(0)
+
+def result_M(N):
+  
+  for M in range(N+1):
+    M_sum_all=M+M_sum(M)
+    if M_sum_all==N:
+      return M
+    
+  return 0
+
+print(result_M(N))

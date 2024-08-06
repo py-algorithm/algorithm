@@ -18,6 +18,6 @@ for m in range(1,n+1):
   if m_sum==n:
     print(m)
     break #break없으면 모든 생성자 출력함
-else:
-  print(0)
+  else:
+    print(0)
   
