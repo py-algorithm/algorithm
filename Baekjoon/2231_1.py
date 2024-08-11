@@ -14,24 +14,22 @@ M의 각자리수 + M
 
 N=int(input())
 
-def M_sum(M):
-  arr=[]
+def m_sum(M):
+  ret=M
 
-  while True:
-    a=M%10
-    arr.append(a)
-    M=(M-a)//10
+  while M>0:
+    ret += M%10
+    M //= 10
   
-    if M<10:
-      arr.append(M)
-      break
+  return ret
 
-  return sum(arr)
+
+
 def result_M(N):
   
   for M in range(N+1):
-    M_sum_all=M+M_sum(M)
-    if M_sum_all==N:
+
+    if m_sum(M)==N:
       return M
     
   return 0
