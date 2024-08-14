@@ -12,7 +12,6 @@ i=3의 배수도 5의 배수도 아님->i
 '''
 arr=[]
 
-result_1=0
 result_2=0
 
 for _ in range(3):
@@ -23,14 +22,11 @@ for _ in range(3):
 for index, element in enumerate(arr):
 
   if element!='Fizz'and element!='FizzBuzz'and element!='Buzz':
-    n=int(element)
-
-
     #정수가 arr 인덱스 몇번째에 있는지 보고 4번째 수 추청
-    result_1=3-index+n
+    n = 3 - index + int(element)
 
-    is_multiple_3 = result_1 % 3 == 0
-    is_multiple_5 = result_1 % 5 == 0
+    is_multiple_3 = n % 3 == 0
+    is_multiple_5 = n % 5 == 0
     
     #4번째 수 가 3,5,3과5의 배수인지 확인 후 출력
     if is_multiple_3 and is_multiple_5:
@@ -40,6 +36,6 @@ for index, element in enumerate(arr):
     elif not is_multiple_3 and is_multiple_5:
       result_2='Buzz'
     elif not is_multiple_3 and not is_multiple_5:
-      result_2=result_1
+      result_2=n
 
 print(result_2)
