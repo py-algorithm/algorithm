@@ -12,7 +12,7 @@ i=3의 배수도 5의 배수도 아님->i
 '''
 arr=[]
 
-result_2=0
+result=0
 
 for _ in range(3):
   i=input()
@@ -30,12 +30,12 @@ for index, element in enumerate(arr):
     
     #4번째 수 가 3,5,3과5의 배수인지 확인 후 출력
     if is_multiple_3 and is_multiple_5:
-      result_2='FizzBuzz'
+      result='FizzBuzz'
     elif is_multiple_3 and not is_multiple_5:
-      result_2='Fizz'
+      result='Fizz'
     elif not is_multiple_3 and is_multiple_5:
-      result_2='Buzz'
-    elif not is_multiple_3 and not is_multiple_5:
-      result_2=n
+      result='Buzz'
+    else:
+      result=n
 
-print(result_2)
+print(result)
