@@ -20,29 +20,26 @@ for _ in range(3):
   arr.append(i)
 
 #입력된 세개 중 숫자인걸 찾아서 정수변환
-for i in arr:
+for index, element in enumerate(arr):
 
-  if i!='Fizz'and i!='FizzBuzz'and i!='Buzz':
-    n=int(i)
-
-
-#정수가 arr 인덱스 몇번째에 있는지 보고 4번째 수 추청
-    if i==arr[0]:
-      result_1=n+3
-    if i==arr[1]:
-      result_1=n+2
-    if i==arr[2]:
-      result_1=n+1
+  if element!='Fizz'and element!='FizzBuzz'and element!='Buzz':
+    n=int(element)
 
 
-#4번째 수 가 3,5,3과5의 배수인지 확인 후 출력
-  if result_1%3==0 and result_1%5==0:
-    result_2='FizzBuzz'
-  elif result_1%3==0 and result_1%5!=0:
-    result_2='Fizz'
-  elif result_1%3!=0 and result_1%5==0:
-    result_2='Buzz'
-  elif result_1%3!=0 and result_1%5!=0:
-    result_2=result_1
+    #정수가 arr 인덱스 몇번째에 있는지 보고 4번째 수 추청
+    result_1=3-index+n
+
+    is_multiple_3 = result_1 % 3 == 0
+    is_multiple_5 = result_1 % 5 == 0
+    
+    #4번째 수 가 3,5,3과5의 배수인지 확인 후 출력
+    if is_multiple_3 and is_multiple_5:
+      result_2='FizzBuzz'
+    elif is_multiple_3 and not is_multiple_5:
+      result_2='Fizz'
+    elif not is_multiple_3 and is_multiple_5:
+      result_2='Buzz'
+    elif not is_multiple_3 and not is_multiple_5:
+      result_2=result_1
 
 print(result_2)
