@@ -21,7 +21,7 @@ for _ in range(3):
 #입력된 세개 중 숫자인걸 찾아서 정수변환
 for index, element in enumerate(arr):
 
-  if element!='Fizz'and element!='FizzBuzz'and element!='Buzz':
+  if element != 'Fizz' and element != 'FizzBuzz' and element != 'Buzz':
     #정수가 arr 인덱스 몇번째에 있는지 보고 4번째 수 추청
     n = 3 - index + int(element)
 
@@ -37,5 +37,6 @@ for index, element in enumerate(arr):
       result='Buzz'
     else:
       result=n
-
-print(result)
+    
+    print(result)
+    break
