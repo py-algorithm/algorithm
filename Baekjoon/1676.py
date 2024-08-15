@@ -15,21 +15,26 @@ n = int(input())
 factorial_n = 1
 cnt = 0
 
+#factorial n 구하기
 for i in range(1,n+1):
   if n == 0:
     break
   factorial_n *= i
   i += 1
 
+#n!의 각 자리수 리스트에 담기
 arr = []
 
 while(factorial_n != 0):
   arr.append(factorial_n%10)
   factorial_n = factorial_n//10
 
+#리스트에 0 개수 구하기
 for i in range(len(arr)):
   if arr[i] == 0:
     cnt += 1
+  else:
+    break
   
 print(cnt)
     
