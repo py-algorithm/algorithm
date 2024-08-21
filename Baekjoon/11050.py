@@ -9,12 +9,12 @@ result_n=1
 result_nk=1
 result_k=1
 
-for i in range(1,n+1):
+for i in range(2,n+1):
     result_n*=i
-for i in range(1,k+1):
-    result_k*=i
-for i in range(1,n-k+1):
-    result_nk*=i
+    if i <= k:
+        result_k*=i
+    if i <= n-k:
+        result_nk*=i
 
 result=result_n//(result_k*result_nk)
 print(result)
