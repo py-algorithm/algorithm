@@ -24,11 +24,7 @@ def quick_sort(array):
   
   #pivot을 첫번째원소로 고정시 최악의 경우 시간 복잡도 n^2
   pivot = random.choice(array)
-
-  left_side = [x for x in array if x <= pivot]
-  right_side = [x for x in array if x > pivot]
-
-  return quick_sort(left_side) + quick_sort(right_side)
+  return quick_sort([x for x in array if x <= pivot]) + quick_sort([x for x in array if x > pivot])
   
 print(*quick_sort(m), sep='\n')
 
