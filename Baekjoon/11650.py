@@ -6,7 +6,8 @@
 1. x좌표 증가하는 순서
 2. x좌표 같으면 y좌표 증가하는 순서
 
-
+for문 2개->시간 초과
+퀵소트 or 머지소트->시간 복잡도 최악이어도(nlogn) or 내장 함수
 '''
 import sys
 
@@ -21,12 +22,7 @@ for i in range(n):
   cor.append([x, y])
 #[[3, 4], [1, 1], [1, -1], [2, 2], [3, 3]]
 
-for i in range(n):
-  for j in range(n):
-    if cor[i][0] != cor [j][0]:
-      cor.sort(key = lambda x : x[0])
-    else:
-      cor.sort(key = lambda x : x[1])
+cor.sort(key = lambda x : (x[0], x[1]))
 
 for i in cor:
   print(i[0], i[1])
