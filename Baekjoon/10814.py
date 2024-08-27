@@ -25,6 +25,3 @@ club.sort(key=lambda x:x[0])#2차원 배열 정렬
 
 for i in club:
   print(i[0], i[1])
-
-
-
