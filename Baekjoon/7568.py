@@ -6,8 +6,8 @@
     ...]
 2. 덩치 등수 매기기
 3. 덩치 등수 차례로 출력
-
 '''
+
 import sys
 
 input = sys.stdin.readline
