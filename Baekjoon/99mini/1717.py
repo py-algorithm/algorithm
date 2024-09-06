@@ -1,4 +1,5 @@
 '''
+작성자: 99mini
 문제 링크:https://www.acmicpc.net/problem/1717
 카테고리:자료 구조, 분리 집합
 문제해설: 
