@@ -18,8 +18,8 @@ n = int(input())
 cor = []
 
 for i in range(n):
-  x, y = map(int, input().split())
-  cor.append([x, y])
+  x = list(map(int, input().split()))
+  cor.append(x)
 #[[3, 4], [1, 1], [1, -1], [2, 2], [3, 3]]
 
 cor.sort(key = lambda x : (x[0], x[1]))
