@@ -1,4 +1,5 @@
 '''
+작성자: 99mini
 문제 링크: https://www.acmicpc.net/problem/17144
 카테고리: 구현, 시뮬레이션
 문제 해설
