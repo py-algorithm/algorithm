@@ -14,6 +14,8 @@ dfs탐색이용-큐자료구조, 최단경로
 2. 브루트포스로 8x8나올 수 있는 모든 경우 확인
 3. 함수에 board[i][j]시작으로 하는 8x8에서 색칠해야하는 횟수 구하기
   시작이 w,b일때 각각 나눠서
+  (1) 시작이 w,b인경우 모두 구하기
+  (2) 왜 최대값이 출력되는지
 '''
 import sys
 
@@ -35,55 +37,51 @@ result = sys.maxsize
 
 #시작점(i, j)일때 8X8까지만 범위정해서 다시 칠해야하는 칸 개수 세기
 def chess(row,col):
-  cnt=0
-
-  is_white=board[row][col]=='W'
+  cnt_W = 0
+  cnt_B = 0
   
   for i in range(row, row+8):
     for j in range(col, col+8):
-        
-      #첫 칸 W
-      if is_white:
-          #W는 홀수번째 행 + 홀수번째 열 or 짝수번째 행 + 짝수번째 열
-          if i % 2 == 1 and j % 2 == 1:
-            if board[i][j] == 'B':
-              cnt += 1
-          if i % 2 ==0 and j % 2 == 0:
-            if board[i][j] == 'B':
-              cnt += 1
-          if i % 2 ==1 and j % 2 == 0:
-            if board[i][j] == 'W':
-              cnt += 1
-          if i % 2 == 0 and j % 2 == 1:
-            if board[i][j] == 'W':
-              cnt += 1
+
+      #첫칸 W라 가정  
+      #W는 홀수번째 행 + 홀수번째 열 or 짝수번째 행 + 짝수번째 열
+      if i % 2 == 1 and j % 2 == 1:
+        if board[i][j] == 'B':
+          cnt_W += 1
+      if i % 2 ==0 and j % 2 == 0:
+        if board[i][j] == 'B':
+          cnt_W += 1
+      if i % 2 ==1 and j % 2 == 0:
+        if board[i][j] == 'W':
+          cnt_W += 1
+      if i % 2 == 0 and j % 2 == 1:
+        if board[i][j] == 'W':
+          cnt_W += 1
             
 
-      #첫 칸 B
-      else:
-          #B는 홀수번째 행 + 홀수번째 열 or 짝수번째 행 + 짝수번째 열
-          if i % 2 == 1 and j % 2 == 1:
-            if board[i][j] == 'W':
-              cnt += 1
-          if i % 2 ==0 and j % 2 == 0:
-            if board[i][j] == 'W':
-              cnt += 1
-          if i % 2 ==1 and j % 2 == 0:
-            if board[i][j] == 'B':
-              cnt += 1
-          if i % 2 == 0 and j % 2 == 1:
-            if board[i][j] == 'B':
-              cnt += 1
+      #첫칸b라 가정
+      #B는 홀수번째 행 + 홀수번째 열 or 짝수번째 행 + 짝수번째 열
+      if i % 2 == 1 and j % 2 == 1:
+        if board[i][j] == 'W':
+          cnt_B += 1
+      if i % 2 ==0 and j % 2 == 0:
+        if board[i][j] == 'W':
+          cnt_B += 1
+      if i % 2 ==1 and j % 2 == 0:
+        if board[i][j] == 'B':
+          cnt_B += 1
+      if i % 2 == 0 and j % 2 == 1:
+        if board[i][j] == 'B':
+          cnt_B += 1
 
-  return cnt
-
+  return min(cnt_W, cnt_B)
 
 
 for i in range(n-7):
   for j in range(m-7):
-    result=min(result, chess(i, j))
+    result = min(result, chess(i, j))
 
-    print(i, j, result)
+print(result)
     
 
 
