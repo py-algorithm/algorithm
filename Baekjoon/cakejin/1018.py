@@ -46,32 +46,24 @@ def chess(row,col):
       if i % 2 == 1 and j % 2 == 1:
         if board[i][j] == 'B':
           cnt_W += 1
+        else:
+          cnt_B += 1
       if i % 2 ==0 and j % 2 == 0:
         if board[i][j] == 'B':
           cnt_W += 1
+        else:
+          cnt_B += 1
       if i % 2 ==1 and j % 2 == 0:
         if board[i][j] == 'W':
           cnt_W += 1
+        else:
+          cnt_B += 1
       if i % 2 == 0 and j % 2 == 1:
         if board[i][j] == 'W':
           cnt_W += 1
+        else:
+          cnt_B += 1
             
-
-      #첫칸b라 가정
-      #B는 홀수번째 행 + 홀수번째 열 or 짝수번째 행 + 짝수번째 열
-      if i % 2 == 1 and j % 2 == 1:
-        if board[i][j] == 'W':
-          cnt_B += 1
-      if i % 2 ==0 and j % 2 == 0:
-        if board[i][j] == 'W':
-          cnt_B += 1
-      if i % 2 ==1 and j % 2 == 0:
-        if board[i][j] == 'B':
-          cnt_B += 1
-      if i % 2 == 0 and j % 2 == 1:
-        if board[i][j] == 'B':
-          cnt_B += 1
-
   return min(cnt_W, cnt_B)
 
 
