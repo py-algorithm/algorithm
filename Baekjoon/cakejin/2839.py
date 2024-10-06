@@ -28,24 +28,18 @@ if n >= 5:
   memo[5] = 1
 if n >= 6:
   memo[6] = 2
-#-1 -1 1 -1 1 2 -1 2 
 
 for i in range(7, n + 1):
 
-  if memo[i - 3] > 0 or memo[i - 5] > 0:
+  if memo[i - 3] and memo[i - 5]:
+    memo[i] = min(memo[i - 3] + 1, memo[i - 5] + 1)
+    
+  elif not memo[i - 3] and memo[i - 5]:
+    memo[i] = memo[i - 5] + 1
+  elif memo[i - 3] and not memo[i - 5]:
+    memo[i] = memo[i - 3] + 1
 
-    if memo[i - 3] != 0 and memo[i - 5] != 0:
-      memo[i] = min(memo[i - 3] + 1, memo[i - 5] + 1)
-      
-    elif memo[i - 3] == 0 and memo[i - 5] != 0:
-      memo[i] = memo[i - 5] + 1
-    elif memo[i - 3] != 0 and memo[i - 5] == 0:
-      memo[i] = memo[i - 3] + 1
-    else:
-      pass
-
-for i in range(n + 1):
-  if memo[i] == 0:
-    memo[i] = -1
-
-print(memo[n])
+if memo[n]:
+  print(memo[n])
+else:
+  print(-1)
