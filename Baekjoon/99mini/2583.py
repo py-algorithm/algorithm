@@ -2,8 +2,7 @@
 작성자: 99mini
 문제 링크:https://www.acmicpc.net/problem/2583
 카테고리: 그래프 탐색
-문제해설:
-TODO: `global` 변수 사용 안하기
+문제해설
 '''
 
 import sys
@@ -24,10 +23,8 @@ for _ in range(k):
             grid[y][x] = True
 
 count = 0
-global area
-area = 0
 
-area_list = []
+area = dict()
 
 visited = [[False] * n for _ in range(m)]
 
@@ -36,8 +33,7 @@ delta_y_unit = [1, -1, 0, 0]
 
 def dfs(x, y):
     visited[y][x] = True
-    global area
-    area += 1
+    area[count] += 1
 
     for dx, dy in zip(delta_x_unit, delta_y_unit):
         cx = x + dx
@@ -51,12 +47,9 @@ for x in range(n):
     for y in range(m):
         if not visited[y][x] and not grid[y][x]:
             count += 1
-            
+            area[count] = 0
             dfs(x, y)
 
-            area_list.append(area)
-            area = 0
-
 print(count)
-print(*sorted(area_list))
+print(*sorted(list(area[a] for a in area)))
 
