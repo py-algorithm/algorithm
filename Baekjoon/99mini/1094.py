@@ -5,4 +5,4 @@
 문제 해설:
 '''
 
-print("{0:b}".format(int(input())).count("1"))
+print(bin(int(input())).count("1"))
