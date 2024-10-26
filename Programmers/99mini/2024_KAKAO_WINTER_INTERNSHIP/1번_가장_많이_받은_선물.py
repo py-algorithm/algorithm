@@ -1,5 +1,5 @@
 '''
-작성자: 99mmini
+작성자: 99mini
 문제 링크: https://school.programmers.co.kr/learn/courses/30/lessons/258712
 카테고리: 행렬, 해쉬 테이블
 문제 해설:

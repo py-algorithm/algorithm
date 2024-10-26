@@ -1,5 +1,5 @@
 '''
-작성자: 99mmini
+작성자: 99mini
 문제 링크: https://school.programmers.co.kr/learn/courses/30/lessons/340211
 카테고리: 구현
 문제 해설: 

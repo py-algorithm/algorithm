@@ -1,5 +1,5 @@
 '''
-작성자: 99mmini
+작성자: 99mini
 문제 링크: https://www.acmicpc.net/problem/1000
 카테고리: 수학
 문제 해설: A + B를 계산합니다.
