@@ -15,23 +15,23 @@ l, c = map(int, input().split())
 chars = sorted(list(map(str, input().split())))
 
 stack = dict()
-stack["isVowel"] = False
+stack["vowel_cnt"] = 0
 stack["password"] = []
 
 def back(start):
     if len(stack["password"]) == l:
-        if stack["isVowel"]:
+        if stack["vowel_cnt"] >= 1 and l - stack["vowel_cnt"] >= 2:
             print(*stack["password"], sep="")
         return
     
     for i in range(start, c):
         stack["password"].append(chars[i])
-        prev = stack["isVowel"]
-        stack["isVowel"] = prev or chars[i] in vowel
+        prev = stack["vowel_cnt"]
+        stack["vowel_cnt"] = prev + (1 if chars[i] in vowel else 0)
 
         back(i + 1)
 
         stack["password"].pop()
-        stack["isVowel"] = prev
+        stack["vowel_cnt"] = prev
 
 back(0)
