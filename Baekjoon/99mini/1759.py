@@ -9,19 +9,29 @@ import sys
 
 input = sys.stdin.readline
 
+vowel = ["a", "e", "i", "o", "u"]
+
 l, c = map(int, input().split())
 chars = sorted(list(map(str, input().split())))
 
-stack = []
+stack = dict()
+stack["isVowel"] = False
+stack["password"] = []
 
 def back(start):
-    if len(stack) == l:
-        print(*stack, sep="")
+    if len(stack["password"]) == l:
+        if stack["isVowel"]:
+            print(*stack["password"], sep="")
         return
     
     for i in range(start, c):
-        stack.append(chars[i])
+        stack["password"].append(chars[i])
+        prev = stack["isVowel"]
+        stack["isVowel"] = prev or chars[i] in vowel
+
         back(i + 1)
-        stack.pop()
+
+        stack["password"].pop()
+        stack["isVowel"] = prev
 
 back(0)
