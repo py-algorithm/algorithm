@@ -4,6 +4,8 @@
 카테고리: BFS
 문제해설: 
 벽 부수고 이동하기 2
+
+visited 행렬에 k 만큼의 공간을 추가하여 벽을 부순 횟수를 추적합니다.
 '''
 
 import sys
@@ -64,4 +66,4 @@ def bfs():
     return -1
 
 print(bfs())
-print(*visited, sep='\n')
+# print(*visited, sep='\n')
