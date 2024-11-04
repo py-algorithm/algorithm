@@ -18,12 +18,12 @@ n, m, k = map(int, input().split())
 graph = [list(map(int, input().strip())) for _ in range(n)]
 
 visited = [[[0] * (k + 1) for _ in range(m)] for _ in range(n)]
-visited[0][0][k] = 1
+visited[0][0][0] = 1
 
 def bfs():
 
     # (row, col, break_cnt)
-    que = deque([(0, 0, k)])
+    que = deque([(0, 0, 0)])
     while que:
         r, c, break_cnt = que.popleft()
         
@@ -42,16 +42,16 @@ def bfs():
 
             # 벽일 경우
             if graph[nr][nc]:
-                # 벽을 부술 수 있는 잔여 횟수가 0안 경우
-                if break_cnt == 0:
+                # 벽을 부순 횟수가 최대인 경우
+                if break_cnt == k:
                     continue
 
                 # 방문했으면
-                if visited[nr][nc][break_cnt - 1]:
+                if visited[nr][nc][break_cnt + 1]:
                     continue
 
-                visited[nr][nc][break_cnt - 1] = distance + 1
-                que.append((nr, nc, break_cnt - 1))
+                visited[nr][nc][break_cnt + 1] = distance + 1
+                que.append((nr, nc, break_cnt + 1))
             
             # 벽이 아닌 경우
             else:
