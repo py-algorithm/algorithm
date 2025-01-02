@@ -7,6 +7,7 @@ Since 24.06.08
 ```bash
 Baekjoon/
   /username
+    0000.py
   /99mini
     1000.js
   /cakejin
@@ -133,3 +134,4 @@ A + B 를 계산합니다.
 
 - [99mini](https://github.com/99mini)
 - [cakejin](https://github.com/cakejin)
+- [l-lyun](https://github.com/l-lyun)
