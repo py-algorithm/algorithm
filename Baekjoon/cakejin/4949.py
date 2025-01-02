@@ -1,4 +1,5 @@
 '''
+작성자: cakejin
 문제 링크:https://www.acmicpc.net/problem/4949
 카테고리: 자료 구조, 문자열, 스택
 문제해설: 균형잡힌 세상
