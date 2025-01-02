@@ -6,8 +6,10 @@
 '''
 import sys
 
-n = int(sys.stdin.readline().rstrip())
-times = list(map(int, sys.stdin.readline().split()))
+input = sys.stdin.readline
+
+n = int(input().rstrip())
+times = list(map(int, input().split()))
 
 times.sort()
 

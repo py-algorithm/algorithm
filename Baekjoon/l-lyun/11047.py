@@ -8,7 +8,8 @@ k == coin일 때 누락
 '''
 import sys
 
-n, k = map(int, sys.stdin.readline().split())
+input = sys.stdin.readline
+n, k = map(int, input().split())
 coins = []
 
 for i in range(n):
@@ -18,10 +19,9 @@ for i in range(n):
 coins.sort(reverse=True)
 result = 0
 for coin in coins:
-    cnt = 0
-    if (k >= coin):
+    if k >= coin:
         cnt = k // coin
         k -= cnt * coin
-    result += cnt
+        result += cnt
     
 print(result)
