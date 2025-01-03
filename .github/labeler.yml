@@ -20,10 +20,10 @@ comments:
 labels:
   "백준":
     include:
-      - "\b\[백준\b:"
+      - "\[백준"
   "프로그래머스":
     include:
-      - "\b\[프로그래머스\b:"
+      - "\[프로그래머스"
   "documentation":
     include:
       - "\bdocs\b:"
