@@ -48,10 +48,6 @@ Study/
 - 참조 링크
 - 그 외 부가적 설명
 
-### main 함수
-
-`main`함수를 선언하고, 문제해결에 필요한 로직을 작성합니다.
-
 ### 예시
 
 1. `python`
@@ -65,24 +61,7 @@ Study/
 
 (옵션)참조링크:
 '''
-def main(a, b):
-  return a + b
-```
-
-2. `javascript`
-
-```javascript
-/**
- * 작성자: 99mini
- * 문제 링크: https://www.acmicpc.net/problem/1000
- * 카테고리: 수학
- * 문제 해설: A + B를 계산합니다.
- *
- * (옵션)참조링크:
- */
-const main = (a, b) => {
-  return a + b;
-};
+print(sum(map(int, input().split())))
 ```
 
 ## Issue
@@ -105,28 +84,6 @@ const main = (a, b) => {
    알고리즘 문제 사이트에서 제공하는 카테고리를 작성합니다.
 3. 문제해설
    구체적인 문제해설을 작성합니다.
-
-[예시]
-
-**PR이름: `[백준 1000]<수학>: A+B`**
-
-**PR본문**
-
-```markdown
-### 개요
-
-- close #2
-- 문제링크: https://www.acmicpc.net/problem/1000
-- 기초 수학문제입니다.
-
-### 카테고리
-
-- 수학
-
-### 문제 해설
-
-A + B 를 계산합니다.
-```
 
 ### Merge
 
