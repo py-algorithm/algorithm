@@ -24,17 +24,17 @@ while True:
   balance = True
 
 
-  for i in range(a):
-    if input_string [i] == '(' or input_string[i] == '[':
-      stack.append(input_string[i])
+  for s in input_string:
+    if s == '(' or s == '[':
+      stack.append(s)
       
-    elif input_string[i] == ')':
+    elif s == ')':
       if not stack or stack[-1] != '(':
         balance = False
         break
       stack.pop()
 
-    elif input_string[i] == ']':
+    elif s == ']':
       if not stack or stack[-1] != '[':
         balance = False
         break
