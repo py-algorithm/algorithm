@@ -2,21 +2,13 @@
 
 # enable labeler on issues, prs, or both.
 enable:
-  issues: true
+  issues: false
   prs: true
 # comments object allows you to specify a different message for issues and prs
 
 comments:
-  issues: |
-    Thanks for opening this issue!
-    I have applied any labels matching special text in your title and description.
-
-    Please review the labels and make any necessary changes.
   prs: |
-    Thanks for the contribution!
-    I have applied any labels matching special text in your title and description.
-
-    Please review the labels and make any necessary changes.
+    auto label...!
 
 # Labels is an object where:
 # - keys are labels
@@ -28,14 +20,13 @@ comments:
 labels:
   "백준":
     include:
-      - '\[백준'
-    exclude: []
+      - "\b\[백준\b:"
   "프로그래머스":
     include:
-      - '\[프로그래머스'
+      - "\b\[프로그래머스\b:"
   "documentation":
     include:
-      - "docs:"
+      - "\bdocs\b:"
   "chore":
     include:
-      - "chore:"
+      - "\bchore\b:"
