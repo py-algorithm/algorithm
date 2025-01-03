@@ -18,12 +18,6 @@ comments:
 #    - 'include' patterns will associate a label if any of these patterns match
 #    - 'exclude' patterns will ignore this label if any of these patterns match
 labels:
-  "백준":
-    include:
-      - "\[백준"
-  "프로그래머스":
-    include:
-      - "\[프로그래머스"
   "documentation":
     include:
       - "\bdocs\b:"
