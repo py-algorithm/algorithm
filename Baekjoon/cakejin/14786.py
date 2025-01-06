@@ -23,42 +23,43 @@ f'(x)=A+Bcos(x)
     bn-cn <= 오차 -> break, cn이 수치해
     안끝나면: f(an)f(cn)<=0 ->an+1 = an, bn+1 = cn
                        >=0 ->an+1 = cn, bn+1 = b 
+
+
+예제
+-입력: 1 1 20
+-출력:19.4417867100477812106
 '''
 
 import sys
-import math
-from decimal import Decimal, getcontext
+from math import sin
 
-getcontext().prec = 50
 
 A, B, C = map(int, input().split())
 
-
 #초기값 설정
-a = Decimal(C - 1)
-b = Decimal(C + 1)
-c = Decimal((a + b)/2)
-er = Decimal("1e-9")
+a = - C
+b = + C
+
+tol = 1e-9
 
 def f(x):
-    sin_x = math.sin(float(x))
-    return A*x + B*Decimal(sin_x) - C
+    return A * x + B * sin(x) - C
 
 
 while f(a)*f(b) > 0:
-    a -= 1 #Decimal(a-1)
-    b += 1 #Decimal(b+1)
+    a -= 0.5
+    b += 0.5
 
-while b - a > er:
-    fb = f(b)
+fa = f(a)
+fb = f(b)
+while b - a > tol:
+    c = (a + b) / 2
     fc = f(c)
 
-    if fb*fc <= 0: #fb가 양수, fc가 음수 -> a=c, b=b
-        a = Decimal(c)
-        c = Decimal((a + b)/2)
-    else: #fb,fc둘다 양수->a=a, b=c
-        b = Decimal(c)
-        c = Decimal((a + b)/2)
+    if fc > 0: #fb,fc둘다 양수->a=a, b=c
+        b = c
+    else: #fb가 양수, fc가 음수 -> a=c, b=b 
+        a = c
 
 print(c)
         
