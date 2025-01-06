@@ -25,35 +25,47 @@ f'(x)=A+Bcos(x)
 
 import sys
 import math
+from decimal import Decimal, getcontext
+
+getcontext().prec = 50
 
 A, B, C = map(int, input().split())
 
+
 #초기값 설정
-a = C - 1
-b = C + 1
-c = (a + b)/2
-er = 0.0000000001
+a = Decimal(C - 1)
+b = Decimal(C + 1)
+c = Decimal((a + b)/2) 
+er = Decimal("1e-9")
 
 def f(x):
-    sin_x = math.sin(x)
-    return A*x + B*sin_x - C
+    sin_x = str(math.sin(float(x)))
+    return A*x + B*Decimal(sin_x) - C
+
 
 while f(a)*f(b) > 0:
-    a -= 1
-    b += 1
+    a -= 1 #Decimal(a-1)
+    b += 1 #Decimal(b+1)
 
-while b - c > er:
+while b - a > er:
     fb = f(b)
     fc = f(c)
 
     if fb*fc <= 0: #fb가 양수, fc가 음수 -> a=c, b=b
         a = c
-        c = (a + b)/2
+       
     else: #fb,fc둘다 양수->a=a, b=c
         b = c
-        c = (a + b)/2
+    c = (a + b)/2
 
-print(round(c, 6))
+print(f"{c:.6f}")
+        
+
+
+
+
+
+
         
 
 
