@@ -27,27 +27,51 @@ import sys
 import math
 from decimal import Decimal, getcontext
 
+# Decimal의 정밀도를 50자리까지 설정
 getcontext().prec = 50
 
-A, B, C = map(int, input().split())
-
+A, B, C = map(int, sys.stdin.readline().split())
+A, B, C = Decimal(A), Decimal(B), Decimal(C)
 
 #초기값 설정
-a = Decimal(C - 1)
-b = Decimal(C + 1)
-c = Decimal((a + b)/2) 
-er = Decimal("1e-9")
+#a = Decimal(-1)
+#b = Decimal(1)
+a = C / A - Decimal("1")
+b = C / A + Decimal("1")
+
+tol = Decimal("1e-7")
+
+#def factorial1(n):
+#    fac = 1
+#    for i in range(2, n + 1):
+#        fac *= i
+#    return fac
+
+def sin_meclaurin(x, terms = 20):
+    x = Decimal(x)
+    result = Decimal(0)
+    term = x
+    for n in range(1, terms + 1):
+        result += term
+        #term *= ((-1) ** n) * (x ** (2 * n +1)) / factorial1(2 * n  + 1)
+        term *= -x**2 / (2 * n * (2 * n + 1))
+        if abs(term) < tol:
+            break
+    return result
+
+
 
 def f(x):
-    sin_x = str(math.sin(float(x)))
-    return A*x + B*Decimal(sin_x) - C
+    #sin_x = math.sin(x)
+    return A * x + B * sin_meclaurin(x) - C
 
 
 while f(a)*f(b) > 0:
-    a -= 1 #Decimal(a-1)
-    b += 1 #Decimal(b+1)
+    a -= Decimal("1")
+    b += Decimal("1")
 
-while b - a > er:
+while abs(b - a) > tol:
+    c = ((a + b)/2) 
     fb = f(b)
     fc = f(c)
 
@@ -56,13 +80,8 @@ while b - a > er:
        
     else: #fb,fc둘다 양수->a=a, b=c
         b = c
-    c = (a + b)/2
 
 print(f"{c:.6f}")
-        
-
-
-
 
 
 
