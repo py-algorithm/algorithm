@@ -47,15 +47,13 @@ while f(a)*f(b) > 0:
     a -= 0.5
     b += 0.5
 
-fa = f(a)
-fb = f(b)
+
 while b - a > tol:
     c = (a + b) / 2
-    fc = f(c)
 
-    if fc > 0: #fb,fc둘다 양수->a=a, b=c
+    if f(c) > 0: #fc둘다 양수->a=a, b=c
         b = c
-    else: #fb가 양수, fc가 음수 -> a=c, b=b 
+    else: #fc가 음수 -> a=c, b=b 
         a = c
 
 print(c)
