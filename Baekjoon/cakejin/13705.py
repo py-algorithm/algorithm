@@ -21,40 +21,38 @@ f'(x)=A+Bcos(x)
     bn-cn <= 오차 -> break, cn이 수치해
     안끝나면: f(an)f(cn)<=0 ->an+1 = an, bn+1 = cn
                        >=0 ->an+1 = cn, bn+1 = b 
+소수의 정확한 연산
+-부동 소수점 말고 고정 소수점 이용: Decimal
 '''
 
 import sys
-import math
-from decimal import Decimal, getcontext
+import decimal
 
 # Decimal의 정밀도를 50자리까지 설정
-getcontext().prec = 50
+decimal.getcontext().prec = 100
+decimal.getcontext().rounding = decimal.ROUND_HALF_UP
 
 A, B, C = map(int, sys.stdin.readline().split())
-A, B, C = Decimal(A), Decimal(B), Decimal(C)
+A, B, C = decimal.Decimal(A), decimal.Decimal(B), decimal.Decimal(C)
 
 #초기값 설정
-#a = Decimal(-1)
-#b = Decimal(1)
-a = C / A - Decimal("1")
-b = C / A + Decimal("1")
+#-1<sin<1
+a = decimal.Decimal("0")
+b = decimal.Decimal("10")
 
-tol = Decimal("1e-7")
+tol = decimal.Decimal("1e-20")
 
-#def factorial1(n):
-#    fac = 1
-#    for i in range(2, n + 1):
-#        fac *= i
-#    return fac
-
-def sin_meclaurin(x, terms = 20):
-    x = Decimal(x)
-    result = Decimal(0)
+def sin_meclaurin(x, terms = 25):
+    result = decimal.Decimal(0)
+    #x범위를 -2pi~2pi로 축소
+    pi = decimal.Decimal('3.141592653589793238462643383279502884197169399375105820974944592307816406286')
+    two_pi = decimal.Decimal('2') * pi
+    x = x % two_pi
     term = x
     for n in range(1, terms + 1):
         result += term
-        #term *= ((-1) ** n) * (x ** (2 * n +1)) / factorial1(2 * n  + 1)
-        term *= -x**2 / (2 * n * (2 * n + 1))
+        #term *= ((-1) ** n) * (x ** (2 * n +1)) / factorial(2 * n  + 1)
+        term *= decimal.Decimal(-x ** 2) / (decimal.Decimal(2 * n) * decimal.Decimal(2 * n + 1))
         if abs(term) < tol:
             break
     return result
@@ -62,26 +60,27 @@ def sin_meclaurin(x, terms = 20):
 
 
 def f(x):
-    #sin_x = math.sin(x)
     return A * x + B * sin_meclaurin(x) - C
 
 
 while f(a)*f(b) > 0:
-    a -= Decimal("1")
-    b += Decimal("1")
+    a -= decimal.Decimal("1")
+    b += decimal.Decimal("1")
 
 while abs(b - a) > tol:
-    c = ((a + b)/2) 
-    fb = f(b)
+    c = (a + b)/2 
+    fa = f(a)
     fc = f(c)
 
-    if fb*fc <= 0: #fb가 양수, fc가 음수 -> a=c, b=b
+    if abs(fc) <= tol:
+        break
+    elif fa * fc > 0:
         a = c
-       
-    else: #fb,fc둘다 양수->a=a, b=c
+ 
+    else: 
         b = c
 
-print(f"{c:.6f}")
+print(round(c, 6))
 
 
 
