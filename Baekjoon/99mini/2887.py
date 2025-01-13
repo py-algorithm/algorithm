@@ -21,52 +21,34 @@ coordinate = list(tuple(map(int, input().split())) for _ in range(n))
 
 parent = [i for i in range(n + 1)]
 
-'''
-(a, b, weight)
-'''
-graph: list[tuple[int, int, int]] = []
+graph: dict[int, dict[int, int]] = dict()
 
 for i in range(n):
-    lhs = coordinate[i]
-    for j in range(i + 1, n):
-        rhs = coordinate[j]
-        graph.append((
-            i, 
-            j, 
-            min(
-                abs(lhs[0] - rhs[0]),
-                abs(lhs[1] - rhs[1]),
-                abs(lhs[2] - rhs[2])
-            )
-        ))
+    graph[i + 1] = dict()
 
-graph.sort(key=lambda x: x[-1])
 
-def find_parent(edge: int) -> int:
-    if parent[edge] == edge:
-        return edge
-    parent[edge] = find_parent(parent[edge])
-    return parent[edge]
+for i in range(1, n + 1):
+    lhs = coordinate[i - 1]
 
-def union(a: int, b: int) -> None:
-    lhs = find_parent(a)
-    rhs = find_parent(b)
+    for j in range(i + 1, n + 1):
+        rhs = coordinate[j - 1]
+        
+        weight = min(
+            abs(lhs[0] - rhs[0]),
+            abs(lhs[1] - rhs[1]),
+            abs(lhs[2] - rhs[2])
+        )
 
-    if lhs < rhs:
-        parent[rhs] = lhs
-    else:
-        parent[lhs] = rhs
+        if j not in graph[i]:
+            graph[i][j] = weight
+        else:
+            graph[i][j] = min(weight, graph[i][j])
+        if i not in graph[j]:
+            graph[j][i] = weight
+        else:
+            graph[j][i] = min(weight, graph[j][i])
 
-ret = 0
-edge_cnt = 0
 
-for a, b, c in graph:
-    if find_parent(a) != find_parent(b):
-        union(a, b)
-        ret += c
-        edge_cnt += 1
+visited = [False for _ in range(n + 1)]
 
-        if edge_cnt == n - 1:
-            break
-
-print(ret)
+print(graph)
