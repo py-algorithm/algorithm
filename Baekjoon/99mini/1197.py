@@ -16,7 +16,7 @@
 
 import sys
 
-sys.getrecursionlimit(10**6)
+sys.setrecursionlimit(10**6)
 
 v, e = map(int, input().split())
 
