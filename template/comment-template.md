@@ -11,5 +11,18 @@
 문제 링크: https://www.acmicpc.net/problem/
 카테고리:
 문제 해설
+참고
 '''
+```
+
+### Javascript
+
+```javascript
+/**
+ * @author
+ * @link https://www.acmicpc.net/problem/
+ * 카테고리:
+ * @description
+ * @see
+ * */
 ```
