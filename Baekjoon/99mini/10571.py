@@ -11,29 +11,6 @@ import sys
 
 input = sys.stdin.readline
 
-def binary_search_2d(arr: list[list[float]], w: float, c: float):
-    '''
-    :param arr: [[w_i, c_i]]
-    :param w: w is ASC
-    :param c: c is DESC
-    '''
-    start = 0
-    end = len(arr) - 1
-
-    while start < end:
-        mid = (start + end) // 2
-
-        curr_w, curr_c = arr[mid]
-
-        if  (curr_w < w      and    curr_c > c  ) or \
-            (curr_w < w      and    curr_c == c ) or \
-            (curr_w == w     and    curr_c > c  ):
-            start = mid + 1
-        else:
-            end = mid
-
-    return end
-
 t = int(input())
 
 for _ in range(t):
@@ -43,20 +20,16 @@ for _ in range(t):
         list(map(float, input().split())) for _ in range(n)
     )
 
-    lis = [diamond_list[0]]
-    history = [1]
+    dp = [0 for _ in range(n)]
 
-    for (w, c) in diamond_list[1:]:
-        last_w, last_c = lis[-1]
+    for i in range(n):
+        dp[i] = 1
+        head_w, head_c = diamond_list[i]
 
-        if  (last_w < w     and     last_c > c  ) or \
-            (last_w == w    and     last_c > c  ) or \
-            (last_w < w     and     last_c == c ):
-            lis.append([w, c])
-            history.append(len(lis))
-        else:
-            idx = binary_search_2d(lis, w, c)
-            lis[idx] = [w, c]
-            history.append(idx + 1)
+        for j in range(i):
+            tail_w, tail_c = diamond_list[j]
+
+            if head_w > tail_w and head_c < tail_c:
+                dp[i] = max(dp[j] + 1, dp[i])
     
-    print(max(history))
+    print(max(dp))
