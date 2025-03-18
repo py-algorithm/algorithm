@@ -3,21 +3,30 @@
 문제 링크: https://www.acmicpc.net/problem/7511
 카테고리: 자료 구조, 그래프 이론, 분리 집합
 문제 해설
+유니온-파인드 문제
 '''
 
-def generate_disjoint_set(graph, n):
+def find(disjoint_set, x):
     '''
-    분리 집합 생성
+    부모 찾기
     '''
-    return list(i for i in range(n))
+    if x != disjoint_set[x]:
+        return find(disjoint_set, disjoint_set[x])
+    return x
 
-
-def is_same_parent(disjoint_set, a, b):
+def union(disjoint_set, a, b):
     '''
-    같은 집합의 노드인지 판별
+    분리 집합 병합
     '''
 
-    return disjoint_set[a] == disjoint_set[b]
+    a, b = find(disjoint_set, a), find(disjoint_set, b) 
+
+    if a < b:
+        disjoint_set[b] = a
+    elif a > b:
+        disjoint_set[a] = b
+    
+    return disjoint_set
 
 t = int(input())
 
@@ -28,27 +37,18 @@ for test_number in range(t):
     n = int(input())
     k = int(input())
 
-    graph: dict[int, list[int]] = {}
-
-    for i in range(n):
-        graph[i] = []
+    disjoint_set = list(i for i in range(n))
 
     for _ in range(k):
         a, b = map(int, input().split())
 
-        graph[a].append(b)
-        graph[b].append(a)
-
-    disjoint_set = generate_disjoint_set(graph, n)
-
+        union(disjoint_set, a, b)
+        
     m = int(input())
 
     for _ in range(m):
         a, b = map(int, input().split())
-
-        print(1 if is_same_parent(disjoint_set, a, b) else 0)
+        print(1 if find(disjoint_set, a) == find(disjoint_set, b) else 0)
     
     if test_number + 1 < n:
         print()
-
-
