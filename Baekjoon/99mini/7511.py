@@ -6,6 +6,10 @@
 유니온-파인드 문제
 '''
 
+import sys
+
+input = sys.stdin.readline
+
 def find(disjoint_set, x):
     '''
     부모 찾기
