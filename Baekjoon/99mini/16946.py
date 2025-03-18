@@ -18,8 +18,12 @@ input = sys.stdin.readline
 n, m = map(int, input().split())
 tiles = [input().strip() for _ in range(n)]
 
-visited = [[0 for _ in range(m)] for _ in range(n)]
-result = visited[::]
+group_id = 0
+'''
+방문 기록의 그룹의 아이디를 저장하기 위한 글로벌 변수 (increment id)
+'''
+
+visited = [[dict({"value":0, "id":0}) for _ in range(m)] for _ in range(n)]
 
 dn = [
         [0, 1],
@@ -32,6 +36,9 @@ def is_boundary(row, col) -> bool:
     return row < n and row >= 0 and col < m and col >= 0
 
 def bfs(graph: list[str], row: int, col: int):
+
+    global group_id
+
     visited_set = set([(row, col)])
     q = deque([(row, col)])
 
@@ -54,33 +61,42 @@ def bfs(graph: list[str], row: int, col: int):
 
                 q.append((next_row, next_col))
     
+    group_id += 1
     for v in visited_set:
         v_row, v_col = v
 
-        visited[v_row][v_col] = len(visited_set)
+        visited[v_row][v_col] = dict({
+            "value": len(visited_set),
+            "id": group_id
+        })
         
 
 def calc_bfs(row: int, col: int):
 
     ret = 1
 
+    visited_id = set()
+
     for delta_row, delta_col in dn:
         next_row = row + delta_row
         next_col = col + delta_col
 
-        if  is_boundary(next_row, next_col) and visited[next_row][next_col]:
+        if  is_boundary(next_row, next_col) and \
+            visited[next_row][next_col]['value'] and \
+            visited[next_row][next_col]['id'] not in visited_id:
             """
             맵의 경계에 존재
-            visited > 0
+            visited[next_row][next_col]["value"] > 0
+            방문하지 않은 그룹
             """
-            ret += visited[next_row][next_col]
+            ret += visited[next_row][next_col]['value']
+            visited_id.add(visited[next_row][next_col]['id'])
 
     return ret % 10
     
-
 for row in range(n):
     for col in range(m):
-        if not visited[row][col] and tiles[row][col] == "0":
+        if not visited[row][col]['value'] and tiles[row][col] == "0":
             bfs(tiles, row, col)
 
 for row in range(n):
