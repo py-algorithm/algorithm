@@ -73,9 +73,6 @@ def is_boundary(row: int, col: int) -> bool:
     return 0 <= row < n and 0 <= col < n
 
 def is_valid():
-    global matrix
-    global visited
-
     continuous = False
 
     visited = [[False for _ in range(n)] for _ in range(n)]
