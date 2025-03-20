@@ -1,3 +1,11 @@
+/**
+ * @link https://school.programmers.co.kr/learn/courses/30/lessons/43164
+ * 카테고리
+ *   - BFS
+ *   - DFS
+ * 문제풀이
+ * 알파벳 후 순 정렬. DFS 탐색
+ */
 function solution(tickets) {
   const answer = [];
 
