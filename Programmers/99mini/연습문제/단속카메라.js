@@ -10,7 +10,6 @@ function solution(routes) {
   let answer = 1;
   const n = routes.length;
   const sorted = routes.sort((a, b) => a[1] - b[1]);
-  console.log(sorted);
 
   let pos = sorted[0][1];
 
