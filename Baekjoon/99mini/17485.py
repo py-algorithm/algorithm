@@ -13,8 +13,7 @@ input = sys.stdin.readline
 
 n, m = map(int, input().split()) # row, col 2 <= n, m <= 100
 
-metrix = list(list(map(int, input().split())) for _ in range(n))
-
+matrix = list(list(map(int, input().split())) for _ in range(n))
 dp = [
         [
             [metrix[j][i] if j == 0 else sys.maxsize if i == 0 or i == m- 1 else (100 * n + 1) for _ in range(3)] for i in range(m) # ~로 부터 | 0: 왼쪽 위 1: 가운데 2: 오른쪽 위 
