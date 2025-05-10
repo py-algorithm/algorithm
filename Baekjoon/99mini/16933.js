@@ -5,39 +5,30 @@
  * @description
  */
 function solution(n, m, k, grid) {
-  /**
-   * @description
-   *    - [row, col, score, cnt]
-   *    - score: 이동경로
-   *    - cnt: 벽을 부순 횟수 0, 1
-   * @type [number, number, number, number][]
-   */
-  const que = [];
-
-  /**
-   * @description queue head pointer
-   * @type number
-   */
-  let ptr = 0;
-
-  const COMPACTION_THRESHOLD = 10_000;
-
-  /**
-   * @description
-   * - 자바스크립트에서 큐가 없기 때문에 ptr을 이용하여 popLeft의 시간복잡도 O(1)보장
-   * - 공간복잡도 비해결
-   */
-  const q = {
-    data: que,
-    popLeft: () => {
-      const ret = que[ptr++];
-      return ret;
-    },
-    /**
-     * @type (v: typeof que[0]) => void
-     */
-    push: (v) => que.push(v),
-  };
+  class Queue {
+    constructor() {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+    }
+    push(val) {
+      const newItem = { data: val, next: null };
+      if (this.head === null) {
+        this.head = newItem;
+      } else {
+        this.tail.next = newItem;
+      }
+      this.tail = newItem;
+      this.length++;
+    }
+    popLeft() {
+      const val = this.head.data;
+      this.head = this.head.next;
+      this.length--;
+      return val;
+    }
+  }
+  const q = new Queue();
 
   q.push([0, 0, 1, 0]);
 
@@ -56,7 +47,7 @@ function solution(n, m, k, grid) {
     [-1, 0],
   ];
 
-  while (q.data.length > ptr) {
+  while (q.length) {
     const [row, col, score, cnt] = q.popLeft();
     const isDay = score % 2 === 1;
 
