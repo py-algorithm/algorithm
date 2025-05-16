@@ -25,4 +25,9 @@ describe("Queue", () => {
     expect(queue.front).toBe(1);
     expect(queue.rear).toBe(4);
   });
+
+  test("should throw error if queue is empty", () => {
+    const queue = new Queue();
+    expect(() => queue.pop()).toThrow("queue is empty");
+  });
 });
