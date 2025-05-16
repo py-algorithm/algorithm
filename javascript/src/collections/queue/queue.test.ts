@@ -1,32 +1,29 @@
 import { Queue } from "./queue";
 
 describe("Queue", () => {
-  test("should be defined", () => {
+  it("should be defined", () => {
     const queue = new Queue();
-
     expect(queue).toBeDefined();
   });
 
-  test("should be init", () => {
+  it("should initialize with given items", () => {
     const queue = new Queue([1, 2, 3]);
-
     expect(queue.length).toBe(3);
   });
 
-  test("should be pop front item", () => {
+  it("should pop the front item", () => {
     const queue = new Queue([1, 2, 3]);
-
     expect(queue.pop()).toBe(1);
   });
 
-  test("should be push rear item", () => {
+  it("should push a new item at the rear", () => {
     const queue = new Queue([1, 2, 3]);
     queue.push(4);
     expect(queue.front).toBe(1);
     expect(queue.rear).toBe(4);
   });
 
-  test("should throw error if queue is empty", () => {
+  it("should throw an error when popping from an empty queue", () => {
     const queue = new Queue();
     expect(() => queue.pop()).toThrow("queue is empty");
   });
