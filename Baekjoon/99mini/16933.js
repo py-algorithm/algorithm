@@ -1,5 +1,5 @@
 /**
- * @author 99mini
+ * @author @99mini
  * @see https://www.acmicpc.net/problem/16933
  * @tag BFS, 그래프 탐색
  * @description

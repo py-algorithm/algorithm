@@ -1,5 +1,5 @@
 /**
- * @author 99mini
+ * @author @99mini
  * @see https://www.acmicpc.net/problem/13901
  * @tag 구현, 시뮬레이션
  * @description

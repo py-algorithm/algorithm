@@ -1,5 +1,5 @@
 /**
- * @author: 99mini
+ * @author: @99mini
  * @see https://www.acmicpc.net/problem/27375
  * @tag 브루트포스 알고리즘, 백트래킹
  * @description
