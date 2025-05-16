@@ -1,5 +1,5 @@
 /**
- * @author 99mini
+ * @author @99mini
  * @link https://www.acmicpc.net/problem/17241
  * 카테고리
  *   - 그래프 이론

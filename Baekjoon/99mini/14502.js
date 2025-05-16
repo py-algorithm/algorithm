@@ -1,5 +1,5 @@
 /**
- * @author 99mini
+ * @author @99mini
  * @see https://www.acmicpc.net/problem/14502
  * @tag
  * - 구현
