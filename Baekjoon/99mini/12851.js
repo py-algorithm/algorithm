@@ -10,41 +10,74 @@
  * @param {number} k
  */
 function solution(n, k) {
+  if (n === k) {
+    return `${0}\n${1}`;
+  }
+
+  const Q = () => {
+    let tail = null;
+    let head = null;
+    let length = 0;
+
+    return {
+      get length() {
+        return length;
+      },
+      push: (item) => {
+        const newItem = { value: item, next: null };
+        if (head === null) {
+          head = newItem;
+        } else {
+          tail.next = newItem;
+        }
+
+        tail = newItem;
+        length++;
+      },
+      pop: () => {
+        const ret = head.value;
+        head = head.next;
+        length--;
+
+        return ret;
+      },
+    };
+  };
+
   let minDepth = Number.MAX_SAFE_INTEGER;
-  let combination = 0;
+  let combination = 1;
 
-  const q = [[n, 0]];
-  let ptr = 0;
+  const q = Q();
+  q.push([n, 0]);
 
-  const visited = { [n]: true };
+  const visited = { [n]: 0 };
 
   const funcList = [(v) => v + 1, (v) => v - 1, (v) => v * 2];
 
-  while (q.length > ptr) {
-    const [curr, depth] = q[ptr++];
+  while (q.length) {
+    const [curr, depth] = q.pop();
 
     if (depth > minDepth) {
-      continue;
-    }
-
-    if (curr === k) {
-      if (minDepth === depth) {
-        combination++;
-      } else if (minDepth > depth) {
-        minDepth = depth;
-        combination = 1;
-      }
       continue;
     }
 
     for (const fn of funcList) {
       const nextPos = fn(curr);
 
-      if (nextPos in visited) {
-        continue;
-      }
+      if (0 <= nextPos && nextPos <= 100_000) {
+        if (nextPos === k) {
+          if (minDepth > depth + 1) {
+            minDepth = depth + 1;
+          } else if (minDepth === depth + 1) {
+            combination++;
+          }
+        }
 
-      q.push([nextPos, depth + 1]);
+        if (visited[nextPos] === undefined || visited[nextPos] === depth + 1) {
+          q.push([nextPos, depth + 1]);
+          visited[nextPos] = depth + 1;
+        }
+      }
     }
   }
 
