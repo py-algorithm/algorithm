@@ -1,5 +1,7 @@
 {
-  "github.copilot.editor.enableAutoCompletions": false,
+  "github.copilot.editor.enableCodeActions": false,
+  "github.copilot.editor.enableContextualSuggestions": false,
+
   "editor.tabSize": 4,
   "editor.insertSpaces": true
 }
