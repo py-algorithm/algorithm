@@ -1,5 +1,8 @@
 .DS_Store
 
+# env
+.env
+
 # javascript
 node_modules
 coverage
