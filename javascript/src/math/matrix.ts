@@ -1,3 +1,5 @@
+import { MatrixIndexOutOfRangeException } from "./except";
+
 /**
  *
  * @param c - target col 0-indexed
@@ -7,7 +9,9 @@ export function reverseCol(c: number, matrix: number[][]): number[][] {
   const col = matrix[0].length;
 
   if (c < 0 || c >= col) {
-    throw new Error(`Matrix Index Out of Range\nnMatrix col: ${col}, c: ${c}`);
+    throw new MatrixIndexOutOfRangeException(
+      `Matrix Index Out of Range\nnMatrix col: ${col}, c: ${c}`
+    );
   }
 
   const newMatrix = [...matrix.map((row) => [...row])];
@@ -30,9 +34,72 @@ export function reverseRow(r: number, matrix: number[][]): number[][] {
   const row = matrix.length;
 
   if (r < 0 || r >= row) {
-    throw new Error(`Matrix Index Out of Range\nMatrix row: ${row}, r: ${r}`);
+    throw new MatrixIndexOutOfRangeException(
+      `Matrix Index Out of Range\nMatrix row: ${row}, r: ${r}`
+    );
   }
-  const reversedRow = matrix[r].reverse();
+  const reversedRow = [...matrix[r]].reverse();
 
   return [...matrix.slice(0, r), reversedRow, ...matrix.slice(r + 1)];
+}
+
+/**
+ * @description swap col
+ * @param c1 - target col 0-indexed
+ * @param c2 - target col 0-indexed
+ * @param matrix
+ */
+export function swapCol(
+  c1: number,
+  c2: number,
+  matrix: number[][]
+): number[][] {
+  const col = matrix[0].length;
+
+  if (c1 < 0 || c1 >= col || c2 < 0 || c2 >= col) {
+    throw new MatrixIndexOutOfRangeException(
+      `Matrix Index Out of Range\nMatrix col: ${col}, c1: ${c1}, c2: ${c2}`
+    );
+  }
+
+  const newMatrix = [...matrix.map((row) => [...row])];
+
+  for (let i = 0; i < matrix.length; i++) {
+    const temp = matrix[i][c1];
+    newMatrix[i][c1] = matrix[i][c2];
+    newMatrix[i][c2] = temp;
+  }
+
+  return newMatrix;
+}
+
+/**
+ * @description swap row
+ * @param r1 - target row 0-indexed
+ * @param r2 - target row 0-indexed
+ * @param matrix
+ */
+export function swapRow(
+  r1: number,
+  r2: number,
+  matrix: number[][]
+): number[][] {
+  const row = matrix.length;
+
+  if (r1 < 0 || r1 >= row || r2 < 0 || r2 >= row) {
+    throw new MatrixIndexOutOfRangeException(
+      `Matrix Index Out of Range\nMatrix row: ${row}, r1: ${r1}, r2: ${r2}`
+    );
+  }
+
+  const lessRow = r1 < r2 ? r1 : r2;
+  const moreRow = r1 < r2 ? r2 : r1;
+
+  return [
+    ...matrix.slice(0, lessRow),
+    matrix[moreRow],
+    ...matrix.slice(lessRow + 1, moreRow),
+    matrix[lessRow],
+    ...matrix.slice(moreRow + 1),
+  ];
 }
