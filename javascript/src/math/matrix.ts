@@ -103,3 +103,31 @@ export function swapRow(
     ...matrix.slice(moreRow + 1),
   ];
 }
+/**
+ * @description rotate matrix 90 degrees
+ * @param matrix
+ * @param clockwise - rotate clock wise if true, counter clock wise if false
+ * @default clockwise true
+ */
+export function rotate90(
+  matrix: number[][],
+  clockwise: boolean = true
+): number[][] {
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+
+  // 회전 후 행렬은 cols x rows 크기가 됨
+  const rotated = Array.from({ length: cols }, () => Array(rows).fill(0));
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      if (clockwise) {
+        rotated[j][rows - 1 - i] = matrix[i][j];
+      } else {
+        rotated[cols - 1 - j][i] = matrix[i][j];
+      }
+    }
+  }
+
+  return rotated;
+}

@@ -1,5 +1,5 @@
 import { MatrixIndexOutOfRangeException } from "./except";
-import { reverseCol, reverseRow, swapCol, swapRow } from "./matrix";
+import { reverseCol, reverseRow, swapCol, swapRow, rotate90 } from "./matrix";
 
 const matrix = [
   [1, 2, 3, 4],
@@ -92,5 +92,28 @@ describe("swapRow", () => {
         `Matrix Index Out of Range\nMatrix row: ${3}, r1: ${4}, r2: ${2}`
       );
     }
+  });
+});
+
+describe("rotate90", () => {
+  it("should rotate matrix 90 degrees (clockwise)", () => {
+    const rotated = rotate90(matrix);
+    console.log(rotated);
+    expect(rotated).toEqual([
+      [9, 5, 1],
+      [10, 6, 2],
+      [11, 7, 3],
+      [12, 8, 4],
+    ]);
+  });
+
+  it("should rotate matrix 90 degrees counter clockwise", () => {
+    const rotated = rotate90(matrix, false);
+    expect(rotated).toEqual([
+      [4, 8, 12],
+      [3, 7, 11],
+      [2, 6, 10],
+      [1, 5, 9],
+    ]);
   });
 });
